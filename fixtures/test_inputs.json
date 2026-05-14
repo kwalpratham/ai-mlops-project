@@ -1,0 +1,12 @@
+[
+  {"text": "Wall Street stocks surged today after the Federal Reserve announced a rate cut.", "expected_label": "Business"},
+  {"text": "NASA launched a new Mars rover equipped with AI-powered navigation systems.", "expected_label": "Sci/Tech"},
+  {"text": "Manchester United signed a new striker in a record-breaking transfer deal.", "expected_label": "Sports"},
+  {"text": "The United Nations held an emergency session to address the humanitarian crisis.", "expected_label": "World"},
+  {"text": "Apple released its latest iPhone with an improved camera and longer battery life.", "expected_label": "Sci/Tech"},
+  {"text": "The Olympic Games committee announced the host city for 2036.", "expected_label": "Sports"},
+  {"text": "Oil prices dropped sharply amid concerns over a global economic slowdown.", "expected_label": "Business"},
+  {"text": "Researchers at MIT developed a new algorithm that speeds up drug discovery.", "expected_label": "Sci/Tech"},
+  {"text": "The president met with foreign leaders to discuss a new trade agreement.", "expected_label": "World"},
+  {"text": "The Lakers defeated the Celtics in a thrilling overtime game last night.", "expected_label": "Sports"}
+]

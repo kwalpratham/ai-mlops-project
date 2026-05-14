@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  # ── MLflow Tracking Server ────────────────────────────────────────────────
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # ── Inference API ─────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MODEL_TYPE=${MODEL_TYPE:-baseline}
+      - MODEL_PATH=/app/models/${MODEL_TYPE:-baseline}
+      - PORT=8000
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+      - FEEDBACK_DB_PATH=/app/data/feedback.db
+    volumes:
+      - ./models:/app/models:ro
+      - api-data:/app/data
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mlflow-data:
+  api-data:

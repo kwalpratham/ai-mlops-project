@@ -12,9 +12,9 @@ env/
 .env
 *.so
 
-# ML artifacts
-models/
-artifacts/
+# ML artifacts (top-level trained weights only)
+/models/
+/artifacts/
 data/processed/
 mlruns/
 mlflow.db
